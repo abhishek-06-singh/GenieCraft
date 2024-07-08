@@ -30,13 +30,13 @@ async function History() {
       .orderBy(desc(AIOutput.id));
   }
 
-  const GetTemplateName = (slug: string) => {
+  const GetTemplateName = (slug: string | null) => {
+    if (slug === null) return undefined;
     const template: TEMPLATE | undefined = Templates?.find(
       (item) => item.slug == slug
     );
     return template;
   };
-
   return (
     <div className="m-5 p-5 border rounded-lg bg-white">
       <h2 className="font-bold text-3xl">History</h2>
