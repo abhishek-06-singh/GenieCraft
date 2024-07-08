@@ -55,7 +55,7 @@ function Billing() {
     rzp.open();
   };
 
-  const SaveSubscription = async (paymentId) => {
+  const SaveSubscription = async (paymentId: any) => {
     const result = await db.insert(UserSubscription).values({
       email: user?.primaryEmailAddress?.emailAddress,
       userName: user?.fullName,
