@@ -10,35 +10,36 @@ import { TEMPLATE } from "../_components/TemplateListSection";
 import CopyButton from "./_components/CopyButton";
 
 export interface HISTORY {
-  id: Number;
+  id: number; // Changed to lowercase 'number'
   formData: string;
   aiResponse: string;
   templateSlug: string;
   createdBy: string;
   createdAt: string;
 }
+
 async function History() {
   const user = await currentUser();
 
-  {
-    /* @ts-ignore */
-  }
+  // @ts-ignore
   const HistoryList: HISTORY[] = await db
     .select()
     .from(AIOutput)
     .where(eq(AIOutput?.createdBy, user?.primaryEmailAddress?.emailAddress))
     .orderBy(desc(AIOutput.id));
+
   const GetTemplateName = (slug: string) => {
-    const template: TEMPLATE | any = Templates?.find(
+    const template: TEMPLATE | undefined = Templates?.find(
       (item) => item.slug == slug
     );
     return template;
   };
+
   return (
     <div className="m-5 p-5 border rounded-lg bg-white">
       <h2 className="font-bold text-3xl">History</h2>
       <p className="text-gray-500">
-        Search your previously generate AI content
+        Search your previously generated AI content
       </p>
 
       <div className="-mx-4 mt-8 sm:-mx-0">
@@ -76,7 +77,7 @@ async function History() {
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
             {HistoryList.map((item: HISTORY, index: number) => (
-              <tr>
+              <tr key={index}>
                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 flex justify-left gap-3 items-center">
                   <Image
                     src={GetTemplateName(item?.templateSlug)?.icon}
