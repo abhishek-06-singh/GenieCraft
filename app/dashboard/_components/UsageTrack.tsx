@@ -31,34 +31,31 @@ function UsageTrack() {
   }, [updateCreditUsage && user]);
 
   const GetData = async () => {
-    {
-      /* @ts-ignore */
-    }
-    const result: HISTORY[] = await db
-      .select()
-      .from(AIOutput)
-      .where(eq(AIOutput.createdBy, user?.primaryEmailAddress?.emailAddress));
+    if (user?.primaryEmailAddress?.emailAddress) {
+      const result: HISTORY[] = await db
+        .select()
+        .from(AIOutput)
+        .where(eq(AIOutput.createdBy, user.primaryEmailAddress.emailAddress));
 
-    GetTotalUsage(result);
+      GetTotalUsage(result);
+    }
   };
 
   const IsUserSubscribe = async () => {
-    {
-      /* @ts-ignore */
-    }
-    const result = await db
-      .select()
-      .from(UserSubscription)
-      .where(
-        eq(UserSubscription.email, user?.primaryEmailAddress?.emailAddress)
-      );
-    console.log(result);
-    if (result.length > 0) {
-      setUserSubscription(true);
-      setMaxWords(1000000);
+    if (user?.primaryEmailAddress?.emailAddress) {
+      const result = await db
+        .select()
+        .from(UserSubscription)
+        .where(
+          eq(UserSubscription.email, user.primaryEmailAddress.emailAddress)
+        );
+      console.log(result);
+      if (result.length > 0) {
+        setUserSubscription(true);
+        setMaxWords(1000000);
+      }
     }
   };
-
   const GetTotalUsage = (result: HISTORY[]) => {
     let total: number = 0;
     result.forEach((element) => {
