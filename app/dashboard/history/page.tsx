@@ -104,7 +104,7 @@ async function History() {
                   {item.createdAt}
                 </td>
                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  {item?.aiResponse.length}
+                  {item?.aiResponse ? item.aiResponse.length : 0}
                 </td>
                 <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                   <CopyButton aiResponse={item.aiResponse} />
