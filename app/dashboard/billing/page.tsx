@@ -10,6 +10,11 @@ import { useUser } from "@clerk/nextjs";
 import moment from "moment";
 import { UserSubscriptionContext } from "@/app/(context)/UserSubscriptionContext";
 
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
 function Billing() {
   const [loading, setLoading] = useState(false);
   const { user } = useUser();
