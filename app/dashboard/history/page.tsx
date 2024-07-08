@@ -21,7 +21,6 @@ export interface HISTORY {
 async function History() {
   const user = await currentUser();
 
-  // @ts-ignore
   let HistoryList: HISTORY[] = [];
   if (user?.primaryEmailAddress?.emailAddress) {
     HistoryList = await db
@@ -30,6 +29,7 @@ async function History() {
       .where(eq(AIOutput?.createdBy, user?.primaryEmailAddress?.emailAddress))
       .orderBy(desc(AIOutput.id));
   }
+
   const GetTemplateName = (slug: string) => {
     const template: TEMPLATE | undefined = Templates?.find(
       (item) => item.slug == slug
@@ -82,7 +82,10 @@ async function History() {
               <tr key={index}>
                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 flex justify-left gap-3 items-center">
                   <Image
-                    src={GetTemplateName(item?.templateSlug)?.icon}
+                    src={
+                      GetTemplateName(item?.templateSlug)?.icon ||
+                      "/placeholder.png"
+                    }
                     width={25}
                     height={25}
                     alt="icon"
