@@ -22,12 +22,14 @@ async function History() {
   const user = await currentUser();
 
   // @ts-ignore
-  const HistoryList: HISTORY[] = await db
-    .select()
-    .from(AIOutput)
-    .where(eq(AIOutput?.createdBy, user?.primaryEmailAddress?.emailAddress))
-    .orderBy(desc(AIOutput.id));
-
+  let HistoryList: HISTORY[] = [];
+  if (user?.primaryEmailAddress?.emailAddress) {
+    HistoryList = await db
+      .select()
+      .from(AIOutput)
+      .where(eq(AIOutput?.createdBy, user?.primaryEmailAddress?.emailAddress))
+      .orderBy(desc(AIOutput.id));
+  }
   const GetTemplateName = (slug: string) => {
     const template: TEMPLATE | undefined = Templates?.find(
       (item) => item.slug == slug
