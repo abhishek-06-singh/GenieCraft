@@ -10,12 +10,12 @@ import { TEMPLATE } from "../_components/TemplateListSection";
 import CopyButton from "./_components/CopyButton";
 
 export interface HISTORY {
-  id: number; // Changed to lowercase 'number'
-  formData: string;
-  aiResponse: string;
-  templateSlug: string;
-  createdBy: string;
-  createdAt: string;
+  id: number;
+  formData: string | null;
+  aiResponse: string | null;
+  templateSlug: string | null;
+  createdBy: string | null;
+  createdAt: string | null;
 }
 
 async function History() {
