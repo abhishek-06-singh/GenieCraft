@@ -39,17 +39,13 @@ function CreateNewContent(props: PROPS) {
   const { updateCreditUsage, setUpdateCreditUsage } = useContext(
     UpdateCreditUsageContext
   );
+
   /**
    * Used to generate content from AI
    * @param formData
    * @returns
    */
   const GenerateAIContent = async (formData: any) => {
-    if (totalUsage >= 10000 && !userSubscription) {
-      console.log("Please Upgrade");
-      router.push("/dashboard/billing");
-      return;
-    }
     setLoading(true);
     const SelectedPrompt = selectedTemplate?.aiPrompt;
     const FinalAIPrompt = JSON.stringify(formData) + ", " + SelectedPrompt;

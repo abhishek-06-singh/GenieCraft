@@ -3,7 +3,7 @@ import React from "react";
 
 function SearchSection({ onSearchInput }: any) {
   return (
-    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8  ">
       <div className="relative isolate overflow-hidden bg-gradient-to-r from-white to-gray-50 mt-10 px-6 py-20  sm:rounded-3xl sm:px-24 xl:py-20">
         <h2 className="mx-auto max-w-4xl text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
           Browse All Templates here

@@ -37,8 +37,9 @@ async function History() {
     );
     return template;
   };
+
   return (
-    <div className="m-5 p-5 border rounded-lg bg-white">
+    <div className="m-5 p-5 border rounded-lg bg-white h-screen overflow-y-auto custom-scrollbar">
       <h2 className="font-bold text-3xl">History</h2>
       <p className="text-gray-500">
         Search your previously generated AI content

@@ -1,5 +1,5 @@
 "use client";
-import { FileClock, Home, Settings, WalletCards } from "lucide-react";
+import { FileClock, Home, Settings, WalletCards, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,15 +18,16 @@ function SideNav() {
       icon: FileClock,
       path: "/dashboard/history",
     },
-    {
-      name: "Billing",
-      icon: WalletCards,
-      path: "/dashboard/billing",
-    },
+
     {
       name: "Setting",
       icon: Settings,
       path: "/dashboard/settings",
+    },
+    {
+      name: "Creator",
+      icon: User,
+      path: "/dashboard/creator",
     },
   ];
 
@@ -46,9 +47,9 @@ function SideNav() {
           <Link href={menu.path}>
             <div
               className={`flex gap-2 mb-2 p-3
-                    hover:bg-primary hover:text-white rounded-lg
+                    hover:bg-pink-500/20 hover:text-black rounded-lg
                     cursor-pointer items-center
-                    ${path == menu.path && "bg-primary text-white"}
+                    ${path == menu.path && "bg-pink-500/30 text-black"}
                     `}
             >
               <menu.icon className="h-6 w-6" />
@@ -58,7 +59,7 @@ function SideNav() {
         ))}
       </div>
       <div className="absolute bottom-10 left-0 w-full">
-        <UsageTrack />
+        {/* <UsageTrack /> */}
       </div>
     </div>
   );
